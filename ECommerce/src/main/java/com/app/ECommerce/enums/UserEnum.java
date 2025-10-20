@@ -1,4 +1,4 @@
-package com.app.ECommerce.entity;
+package com.app.ECommerce.enums;
 
 public enum UserEnum {
     CUSTOMER,ADMIN

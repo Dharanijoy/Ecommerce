@@ -7,9 +7,6 @@ import lombok.Data;
 
 @Data
 public class AdressResponse {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     private String street;
     private String city;
     private String state;
