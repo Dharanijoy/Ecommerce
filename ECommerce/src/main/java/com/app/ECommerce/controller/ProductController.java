@@ -40,7 +40,7 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String>deleteById(@PathVariable Long id){
         productService.deleteById(id);
-        return new ResponseEntity<>("This id"+id+" Deleted Successfully",HttpStatus.GONE);
+        return new ResponseEntity<>("This id "+ id +" was Deleted Successfully",HttpStatus.GONE);
     }
 }
 

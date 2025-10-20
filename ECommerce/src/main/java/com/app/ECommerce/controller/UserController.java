@@ -1,5 +1,6 @@
 package com.app.ECommerce.controller;
 
+import com.app.ECommerce.dto.UserRequest;
 import com.app.ECommerce.dto.UserResponse;
 import com.app.ECommerce.entity.User;
 import com.app.ECommerce.service.UserService;
@@ -16,13 +17,14 @@ import java.util.Optional;
 public class UserController {
     private UserService userService;
 
-    public UserController(UserServiceImpl userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @PostMapping("/add")
-    public ResponseEntity<User> addNewUser(@RequestBody User user)
+    public ResponseEntity<UserResponse> addNewUser(@RequestBody UserRequest userRequest)
     {
-        User savedUser=userService.addNewUser(user);
+        UserResponse savedUser=userService.addNewUser(userRequest);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
@@ -39,6 +41,11 @@ public class UserController {
     public String updateUser(@PathVariable Long id,@RequestBody User updateUser){
         userService.updateUser(id,updateUser);
         return "Updated Successfully";
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable Long id){
+        userService.deleteById(id);
+        return new ResponseEntity<>("User Deleted Successfullt",HttpStatus.GONE);
     }
 }
 
