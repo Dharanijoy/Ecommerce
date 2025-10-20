@@ -1,5 +1,6 @@
 package com.app.ECommerce.service;
 
+import com.app.ECommerce.dto.UserRequest;
 import com.app.ECommerce.dto.UserResponse;
 import com.app.ECommerce.entity.User;
 import com.app.ECommerce.mapper.UserResponseMapper;
@@ -20,8 +21,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User addNewUser(User user) {
-        return userRepo.save(user);
+    public UserResponse addNewUser(UserRequest userRequest) {
+       User user=  userRepo.save(UserResponseMapper.mapToUser(userRequest));
+        return UserResponseMapper.mapToUserResponse(user);
     }
 
     @Override
@@ -41,6 +43,11 @@ public class UserServiceImpl implements UserService{
             userRepo.save(existingUser);
         });
 
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        userRepo.deleteById(id);
     }
 
     public void updateUserRequest(User user,User updateUser)

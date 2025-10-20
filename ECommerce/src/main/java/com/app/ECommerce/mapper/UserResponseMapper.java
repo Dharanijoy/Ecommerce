@@ -18,7 +18,6 @@ public class UserResponseMapper {
         if (user.getAdress()!=null)
         {
             AdressResponse adressResponse=new AdressResponse();
-            adressResponse.setId(user.getAdress().getId());
             adressResponse.setStreet(user.getAdress().getStreet());
             adressResponse.setCity(user.getAdress().getCity());
             adressResponse.setState(user.getAdress().getState());
